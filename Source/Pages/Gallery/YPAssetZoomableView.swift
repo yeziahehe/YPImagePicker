@@ -243,6 +243,9 @@ extension YPAssetZoomableView: UIScrollViewDelegate {
             self.fitImage(true, animated: true)
         }
         
+        // IVAN ADD
+        self.fitImage(false, animated: true)
+        
         myDelegate?.ypAssetZoomableViewScrollViewDidEndZooming()
         cropAreaDidChange()
     }

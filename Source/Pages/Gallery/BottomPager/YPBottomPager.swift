@@ -39,7 +39,7 @@ open class YPBottomPager: UIViewController, UIScrollViewDelegate {
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView,
                                           withVelocity velocity: CGPoint,
                                           targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if !v.header.menuItems.isEmpty {
+        if !v.pagerMenu.menuItems.isEmpty {
             let menuIndex = (targetContentOffset.pointee.x + v.frame.size.width) / v.frame.size.width
             let selectedIndex = Int(round(menuIndex)) - 1
             if selectedIndex != currentPage {
@@ -73,12 +73,12 @@ open class YPBottomPager: UIViewController, UIScrollViewDelegate {
             menuItem.button.addTarget(self,
                                       action: #selector(tabTapped(_:)),
                                       for: .touchUpInside)
-            v.header.menuItems.append(menuItem)
+            v.pagerMenu.menuItems.append(menuItem)
         }
         
-        let currentMenuItem = v.header.menuItems[0]
+        let currentMenuItem = v.pagerMenu.menuItems[0]
         currentMenuItem.select()
-        v.header.refreshMenuItems()
+        v.pagerMenu.refreshMenuItems()
     }
     
     @objc
@@ -98,7 +98,7 @@ open class YPBottomPager: UIViewController, UIScrollViewDelegate {
         }
         currentPage = page
         //select menu item and deselect others
-        for (i, mi) in v.header.menuItems.enumerated() {
+        for (i, mi) in v.pagerMenu.menuItems.enumerated() {
             if (i == page) {
                 mi.select()
             } else {
@@ -113,10 +113,10 @@ open class YPBottomPager: UIViewController, UIScrollViewDelegate {
         let x = CGFloat(page) * UIScreen.main.bounds.width
         v.scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: false)
         //select menut item and deselect others
-        for mi in v.header.menuItems {
+        for mi in v.pagerMenu.menuItems {
             mi.deselect()
         }
-        let currentMenuItem = v.header.menuItems[page]
+        let currentMenuItem = v.pagerMenu.menuItems[page]
         currentMenuItem.select()
     }
 }

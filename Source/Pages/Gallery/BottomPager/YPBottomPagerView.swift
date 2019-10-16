@@ -11,31 +11,45 @@ import Stevia
 
 final class YPBottomPagerView: UIView {
     
-    var header = YPPagerMenu()
+    var header = UIView()
+    var bottomView = UIView()
+    var pagerMenu = YPPagerMenu()
     var scrollView = UIScrollView()
     
     convenience init() {
         self.init(frame: .zero)
-        backgroundColor = UIColor(red: 239/255, green: 238/255, blue: 237/255, alpha: 1)
+        // IVAN ADD
+       backgroundColor = YPImagePickerConfiguration.shared.bottomMenuColor
+        bottomView.backgroundColor = YPImagePickerConfiguration.shared.bottomMenuColor
         
         sv(
             scrollView,
-            header
+            header.sv(
+                pagerMenu,
+                bottomView
+            )
         )
         
+        var buttom: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            buttom += 34
+        }
         layout(
             0,
             |scrollView|,
             0,
-            |header| ~ 44
+            |header| ~ buttom + 44,
+            0
+        )
+        layout(
+            0,
+            |pagerMenu| ~ 44,
+            0,
+            |bottomView| ~ buttom,
+            0
         )
         
-        if #available(iOS 11.0, *) {
-            header.Bottom == safeAreaLayoutGuide.Bottom
-        } else {
-            header.bottom(0)
-        }
-        header.heightConstraint?.constant = YPConfig.hidesBottomBar ? 0 : 44
+        header.heightConstraint?.constant = YPConfig.hidesBottomBar ? 0 : 44 + buttom
         
         clipsToBounds = false
         setupScrollView()

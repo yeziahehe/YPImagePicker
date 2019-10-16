@@ -23,8 +23,9 @@ class YPAssetViewContainer: UIView {
     public var isShown = true
     
     private let spinner = UIActivityIndicatorView(style: .white)
-    private var shouldCropToSquare = true
+    private var shouldCropToSquare = false
     private var isMultipleSelection = false
+    let tapToTopLabel = UILabel()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -54,17 +55,24 @@ class YPAssetViewContainer: UIView {
             spinnerView.sv(
                 spinner
             ),
-            curtain
+            curtain.sv(
+                tapToTopLabel
+            )
         )
         
         spinner.centerInContainer()
         spinnerView.fillContainer()
         curtain.fillContainer()
+        tapToTopLabel.centerHorizontally()
+        tapToTopLabel.bottom(15)
         
         spinner.startAnimating()
         spinnerView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        curtain.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        curtain.backgroundColor = UIColor.black
         curtain.alpha = 0
+        tapToTopLabel.text = "点击快速回到上方"
+        tapToTopLabel.textColor = YPImagePickerConfiguration.shared.maxNumberWarningLabelTextColor
+        tapToTopLabel.font = UIFont.systemFont(ofSize: 14)
         
         if !onlySquare {
             // Crop Button
@@ -81,6 +89,9 @@ class YPAssetViewContainer: UIView {
         multipleSelectionButton-15-|
         multipleSelectionButton.setImage(YPConfig.icons.multipleSelectionOffIcon, for: .normal)
         multipleSelectionButton.Bottom == zoomableView!.Bottom - 15
+        
+        // IVAN ADD
+        squareCropButton.isHidden = true
         
     }
     
@@ -99,10 +110,10 @@ class YPAssetViewContainer: UIView {
         if onlySquare {
             squareCropButton.isHidden = true
         } else {
-            if let image = zoomableView?.assetImageView.image {
-                let isImageASquare = image.size.width == image.size.height
-                squareCropButton.isHidden = isImageASquare
-            }
+//            if let image = zoomableView?.assetImageView.image {
+//                let isImageASquare = image.size.width == image.size.height
+//                squareCropButton.isHidden = isImageASquare
+//            }
         }
         
         let shouldFit = YPConfig.library.onlySquare ? true : shouldCropToSquare

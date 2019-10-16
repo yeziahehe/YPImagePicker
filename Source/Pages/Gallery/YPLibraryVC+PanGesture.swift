@@ -89,7 +89,7 @@ public class PanGestureHelper: NSObject, UIGestureRecognizerDelegate {
         
         let containerHeight = v.assetViewContainer.frame.height
         let currentPos = sender.location(in: v)
-        let overYLimitToStartMovingUp = currentPos.y * 1.4 < cropBottomY - dragDiff
+        let overYLimitToStartMovingUp = currentPos.y < cropBottomY - dragDiff
         
         switch sender.state {
         case .began:
