@@ -55,4 +55,11 @@ public struct YPColors {
     public var progressBarTrackColor: UIColor = UIColor.white
     /// The color of completed track for the progress bar
     public var progressBarCompletedColor: UIColor?
+    
+    /// IVAN ADD
+    public var bottomMenuColor = UIColor.black
+    public var maxNumberWarningLabelColor = UIColor.black
+    public var maxNumberWarningLabelTextColor = UIColor.white
+    public var barItemTintColor: UIColor = .white
+    public var arrowButtonColor = UIColor.white
 }

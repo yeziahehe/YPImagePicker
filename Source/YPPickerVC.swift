@@ -215,12 +215,12 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
         label.font = UIFont.boldSystemFont(ofSize: 17)
         
         // Use custom font if set by user.
-        if let navBarTitleFont = UINavigationBar.appearance().titleTextAttributes?[.font] as? UIFont {
+        if let navBarTitleFont = YPConfig.attributes?[.font] as? UIFont {
             // Use custom font if set by user.
             label.font = navBarTitleFont
         }
         // Use custom textColor if set by user.
-        if let navBarTitleColor = UINavigationBar.appearance().titleTextAttributes?[.foregroundColor] as? UIColor {
+        if let navBarTitleColor = YPConfig.attributes?[.foregroundColor] as? UIColor {
             label.textColor = navBarTitleColor
         }
         
@@ -234,7 +234,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
             let arrow = UIImageView()
             arrow.image = YPConfig.icons.arrowDownIcon
             
-            let attributes = UINavigationBar.appearance().titleTextAttributes
+            let attributes = YPConfig.attributes
             if let attributes = attributes, let foregroundColor = attributes[NSAttributedString.Key.foregroundColor] as? UIColor {
                 arrow.image = arrow.image?.withRenderingMode(.alwaysTemplate)
                 arrow.tintColor = foregroundColor
@@ -242,7 +242,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
             
             let button = UIButton()
             button.addTarget(self, action: #selector(navBarTapped), for: .touchUpInside)
-            button.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .highlighted)
+            button.setBackgroundColor(YPConfig.colors.arrowButtonColor, forState: .highlighted)
             
             titleView.sv(
                 label,
@@ -268,7 +268,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(close))
-        navigationItem.leftBarButtonItem?.tintColor = YPConfig.colors.tintColor
+        navigationItem.leftBarButtonItem?.tintColor = YPConfig.colors.barItemTintColor
 
         switch mode {
         case .library:

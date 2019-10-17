@@ -19,8 +19,8 @@ final class YPBottomPagerView: UIView {
     convenience init() {
         self.init(frame: .zero)
         // IVAN ADD
-       backgroundColor = YPImagePickerConfiguration.shared.bottomMenuColor
-        bottomView.backgroundColor = YPImagePickerConfiguration.shared.bottomMenuColor
+       backgroundColor = YPConfig.colors.bottomMenuColor
+        bottomView.backgroundColor = YPConfig.colors.bottomMenuColor
         
         sv(
             scrollView,

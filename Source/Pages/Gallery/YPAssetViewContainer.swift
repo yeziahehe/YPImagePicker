@@ -68,10 +68,10 @@ class YPAssetViewContainer: UIView {
         
         spinner.startAnimating()
         spinnerView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        curtain.backgroundColor = YPImagePickerConfiguration.shared.maxNumberWarningLabelColor
+        curtain.backgroundColor = YPConfig.colors.maxNumberWarningLabelColor
         curtain.alpha = 0
         tapToTopLabel.text = "点击快速回到上方"
-        tapToTopLabel.textColor = YPImagePickerConfiguration.shared.maxNumberWarningLabelTextColor
+        tapToTopLabel.textColor = YPConfig.colors.maxNumberWarningLabelTextColor
         tapToTopLabel.font = UIFont.systemFont(ofSize: 14)
         
         if !onlySquare {

@@ -17,7 +17,7 @@ final class YPPagerMenu: UIView {
     convenience init() {
         self.init(frame: .zero)
         // IVAN ADD
-        backgroundColor = YPImagePickerConfiguration.shared.bottomMenuColor
+        backgroundColor = YPConfig.colors.bottomMenuColor
         clipsToBounds = true
     }
     

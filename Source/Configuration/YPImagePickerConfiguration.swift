@@ -91,9 +91,8 @@ public struct YPImagePickerConfiguration {
     public var bottomMenuItemUnSelectedColour = UIColor(r: 153, g: 153, b: 153)
     
     // IVAN ADD
-    public var bottomMenuColor = UIColor.black
-    public var maxNumberWarningLabelColor = UIColor.black
-    public var maxNumberWarningLabelTextColor = UIColor.white
+    public var attributes = UINavigationBar.appearance().titleTextAttributes
+    
     
     /// List of default filters which will be added on the filter screen
     public var filters: [YPFilter] = [
